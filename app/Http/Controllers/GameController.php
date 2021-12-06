@@ -13,8 +13,7 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request){
 
         if ($request->search) {
             $games = Game::where('title', 'like', '%'.$request->search.'%')
@@ -22,7 +21,7 @@ class GameController extends Controller
             return view('games.index', compact ('games'));
         }
 
-        $games = Game::paginate(8);
+        $games = Game::paginate(12);
         return view('games.index', compact('games'));
     }
 
@@ -33,29 +32,8 @@ class GameController extends Controller
      */
     public function create(Request $request)
     {
-        $title = $request->input('title');
-        $poster = $request->input('poster');
-        $url = $request->input('url');
-
-        try {
-
-            return Game::create(
-                [
-                    'title' => $title,
-                    'poster' => $poster,
-                    'url' => $url
-                ]
-                );
-
-        } catch (QueryException $error) {
-            $codigoError = $error->errorInfo[1];
-
-            
-                return response()->json([
-                    'error' => $codigoError
-                ]);
-            
-        }    }
+        return view('games.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -63,9 +41,16 @@ class GameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        
+        $game = new Game();
+        $game->title = $request->title;
+        $game->poster = $request->poster;
+        $game->url = $request->url;
+
+        $game->save();
+
+        return redirect()->route('game.index')->with('success', 'Game added successfuly');
     }
 
     /**

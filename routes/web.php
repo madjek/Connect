@@ -22,3 +22,5 @@ use App\Http\Controllers\GameController;
 
 Route::get('/', [GameController::class, 'index']);
 Route::get('game/', [GameController::class, 'index'])->name('game.index');
+Route::get('game/create', [GameController::class, 'create'])->name('game.create');
+Route::post('game/', [GameController::class, 'store'])->name('game.store');

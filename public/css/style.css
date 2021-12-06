@@ -6,8 +6,21 @@ nav {
     margin-bottom: 1em;
 }
 
+h3 {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0.5em;
+    padding: 0.3em;
+    margin: 0em;
+}
+
+.alert {
+    padding: 0.1em;
+}
+
 .card {
     margin: 0.5em;
+    cursor: pointer;
 }
 .card-body {
     padding: 0em;
