@@ -42,7 +42,7 @@ class GameController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        
+
         $game = new Game();
         $game->title = $request->title;
         $game->poster = $request->poster;
@@ -59,9 +59,10 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id){
+
+        $game = Game::find($id);
+        return view('games.show', compact('game'));
     }
 
     /**

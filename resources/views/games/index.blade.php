@@ -14,12 +14,14 @@
   <div class="row">
     @foreach($games as $game)
     <div class="col-3">
+    <a href="{{ route('game.show', ['id'=>$game->id]) }}">
       <div class="card">
-        <!-- <div class="card-header text-center"><h5>{{ $game->title }}</h5></div> -->
         <div class="card-body">
-          <div class="card-img d-flex justify-content-center align-items-end" style="background-image: url({{ $game->poster }})"><h3>{{$game->title }}</h5></div>
+          <div class="card-img d-flex justify-content-center align-items-end" style="background-image: url({{ $game->poster }})"><h3>{{$game->title }}</h3></div>
+
         </div>
       </div>
+    </a> 
     </div>
     @endforeach
   </div>

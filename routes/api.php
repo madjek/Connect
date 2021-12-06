@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\PartyController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -15,6 +16,7 @@ Route::post('login', [PassportAuthController::class, 'loginUser']);
 Route::post('register', [PassportAuthController::class, 'registerUser']);
 
 Route::post('newgame', [GameController::class, 'create']);
+Route::post('newparty', [PartyController::class, 'create']);
 
 Route::middleware('auth:api')->group(function(){
 

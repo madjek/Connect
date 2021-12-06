@@ -12,4 +12,9 @@ class Game extends Model
     protected $fillable = [
         'title', 'poster', 'url'
     ];
+
+    public function parties()
+    {
+        return $this->hasMany('App\Models\Party', 'game_id');
+    }
 }
