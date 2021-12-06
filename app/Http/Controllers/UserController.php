@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use App\Models\User;
 
-class UserController extends Controller
-{
+class UserController extends Controller{
+    
     public function showAllUsers(){
 
         try {
@@ -39,14 +39,10 @@ class UserController extends Controller
             'id' => 'required',
             'username' => 'required|string|min:3|max:20',
             'steamUsername' => 'required|string|max:20',
-            'email' => 'required|email',
-            'password' => 'required|min:8',
             'avatar' => 'string'
         ], [
             'username.required' => 'Username is required',
             'steamUsername.required' => 'SteamUsername is required',
-            'email.required' => 'Email is required',
-            'password.required' => 'Password is required'
         ]);
 
         try {
@@ -54,13 +50,7 @@ class UserController extends Controller
                     ->update($validatedUpdate);
 
         } catch (QueryException $error) {
-            $eCode = $error->errorInfo[1];
-
-            if($eCode == 1062) {
-                return response()->json([
-                    'error' => "E-mail already registered"
-                ]);
-            }
+            $errorCode = $error->errorInfo[1];
         }
     }    
 }

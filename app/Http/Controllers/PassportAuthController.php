@@ -23,6 +23,7 @@ class PassportAuthController extends Controller
             'password.required' => 'Password is required'
         ]);
 
+        // try {
             User::create([
                 'username' => $request->username,
                 'steamUsername' => $request->steamUsername,
@@ -30,9 +31,23 @@ class PassportAuthController extends Controller
                 'password' => bcrypt($request->password),
                 'avatar' => $request->avatar
             ]);
+        
+        // } catch (QueryException $error) {
+
+        //     $errorCode = $error->errorInfo[1];
+
+        //     if($errorCode == 1062) {
+        //         return response()->json([
+        //             'error' => "E-mail already registered"
+        //         ]);
+        //     }
+        // }
+
+        // $token = $user -> createToken('LaravelAuthApp') -> accessToken;
 
         return response()->json([
             'message' => 'User successfully created!',
+            // 'token' => $token
         ], 201);
     }
 

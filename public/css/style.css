@@ -1,0 +1,20 @@
+body {
+    /* background-color: blue; */
+}
+
+nav {
+    margin-bottom: 1em;
+}
+
+.card {
+    margin: 0.5em;
+}
+.card-body {
+    padding: 0em;
+}
+.card-img {
+    height: 10em;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
