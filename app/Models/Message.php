@@ -16,6 +16,9 @@ class Message extends Model
     public function users()
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
+    public function parties()
+    {
         return $this->belongsTo('App\Models\Party', 'party_id', 'id');
     }
 }

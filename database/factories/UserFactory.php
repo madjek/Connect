@@ -14,12 +14,14 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $rand = rand(1, 200);
+
         return [
             'username' => $this->faker->name(),
             'steamUsername' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => '00000000',
-            'avatar' => 'https://avatars.dicebear.com/api/bottts/0.svg',
+            'avatar' => 'https://avatars.dicebear.com/api/bottts/'.$rand.'.svg',
         ];
     }
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Party;
-use App\Models\Game;
+use App\Models\Message;
 
 class PartyController extends Controller
 {
@@ -73,11 +73,8 @@ class PartyController extends Controller
         //     ->get ();
         //     return view('games.index', compact ('games'));
         // }
-
-        $game = Game::find($id);
-        $game_id = $id;
-        $party = Party::find($game_id);
-        return view('games.show', compact('game'));
+        $party = Party::find($id);
+        return view('parties.show', compact('party'));
     }
 
     /**

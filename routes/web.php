@@ -24,8 +24,8 @@ use App\Http\Controllers\PartyController;
 Route::get('/', [GameController::class, 'index']);
 Route::get('game/', [GameController::class, 'index'])->name('game.index');
 Route::get('game/create', [GameController::class, 'create'])->name('game.create');
-Route::get('game/show/{id}', [GameController::class, 'show'])->name('game.show');
-Route::get('game/show/{g_id}/{id}', [PartyController::class, 'show'])->name('party.show');
+Route::get('game/{id}', [GameController::class, 'show'])->name('game.show');
+Route::get('party/{id}', [PartyController::class, 'show'])->name('party.show');
 Route::post('game/', [GameController::class, 'store'])->name('game.store');
 
 // Route::get('game/show/', [GameController::class, 'show'])->name('game.show');

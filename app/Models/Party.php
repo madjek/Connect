@@ -19,6 +19,6 @@ class Party extends Model
     }
     public function messages()
     {
-        return $this->hasMany('App\Models\Message', 'party_id');
+        return $this->hasMany('App\Models\Message', 'party_id')->orderBy('created_at', 'asc');
     }
 }
