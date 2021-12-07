@@ -13,18 +13,20 @@
                     @foreach($game->parties as $party)
                     <div class="row rooms">
                           <div class="card">
+                          <a href="{{ route('party.show', ['g_id'=>$game->id, 'id'=>$party->id]) }}">
                             <div class="row d-flex justify-content-center align-items-center">
                               <div class="col-2 party-icon" style="background-image: url({{ $party->icon }})"></div>
                               <div class="col-10"><h4>{{ $party->name }}</h4></div>
                             </div>
+                          </a>
                           </div>
                     </div>
                     @endforeach
                 </div>
                 <div class="col-9">
-                    <div class="card-header text-center"><h5>Chat in ...</h5></div>
+                    <div class="card-header text-center"><h5>Chat in {{ $party->name ?? "" }}</h5></div>
                     <div class="card chat">
-
+                      
                     </div>    
                     <div class="row message">
                         <input class="card chat-input col-10" type="text" placeholder="write your message...">

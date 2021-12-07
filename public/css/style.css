@@ -42,6 +42,9 @@ h3 {
 .rooms {
     margin: 0.2em;
 }
+.rooms a {
+    text-decoration: none;
+}
 .chat {
     height: 60vh;
 }

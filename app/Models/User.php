@@ -18,4 +18,9 @@ class User extends Authenticatable
     protected $hidden = ['password'];
 
     use HasApiTokens, HasFactory, Notifiable;
+
+    public function messages()
+    {
+        return $this->hasMany('App\Models\Message', 'user_id');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Party;
+use App\Models\Game;
 
 class PartyController extends Controller
 {
@@ -53,7 +54,7 @@ class PartyController extends Controller
         $party->icon = $request->icon;
         $party->game_id = $request->game_id;
         
-        $game->save();
+        $party->save();
 
         // return redirect()->route('game.index')->with('success', 'Game added successfuly');
     }
@@ -66,6 +67,14 @@ class PartyController extends Controller
      */
     public function show($id)
     {
+
+        // if ($request) {
+        //     $games = Game::where('title', 'like', '%'.$request->search.'%')
+        //     ->get ();
+        //     return view('games.index', compact ('games'));
+        // }
+
+        $game = Game::find($id);
         $game_id = $id;
         $party = Party::find($game_id);
         return view('games.show', compact('game'));
