@@ -14,6 +14,10 @@ h3 {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* .alert {
     padding: 0.1em;
 } */
@@ -24,7 +28,6 @@ h3 {
 .card-body {
     padding: 0em;
 }
-
 .card-img {
     cursor: pointer;
     height: 10em;
@@ -41,9 +44,6 @@ h3 {
 }
 .rooms {
     margin: 0.2em;
-}
-.rooms a {
-    text-decoration: none;
 }
 .chat {
     height: 60vh;
@@ -63,4 +63,10 @@ h3 {
     height: 2.5em;
     margin: 0;
 }
-
+.row {
+    --bs-gutter-x: 0;
+}
+.parties {
+    height: 60vh;
+    padding: 1em;
+}
