@@ -19,7 +19,6 @@ class PassportAuthController extends Controller{
 
         $request->validate([
             'username' => 'required|string|min:3|max:20',
-            'steamUsername' => 'required|string|max:20',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:8',
             'avatar' => 'string'
@@ -29,7 +28,6 @@ class PassportAuthController extends Controller{
 
         User::create([
             'username' => $request->username,
-            'steamUsername' => $request->steamUsername,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'avatar' => "https://avatars.dicebear.com/api/bottts/$rand.svg"

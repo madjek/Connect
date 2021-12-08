@@ -18,9 +18,8 @@ class UserFactory extends Factory
 
         return [
             'username' => $this->faker->name(),
-            'steamUsername' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'password' => '00000000',
+            'password' => bcrypt('00000000'),
             'avatar' => 'https://avatars.dicebear.com/api/bottts/'.$rand.'.svg',
         ];
     }

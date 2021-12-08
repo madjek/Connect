@@ -19,12 +19,12 @@ h3 {
 } */
 
 .card {
-    margin: 0.5em;
     user-select: none;
 }
 .card-body {
     padding: 0em;
 }
+
 .card-img {
     cursor: pointer;
     height: 10em;
@@ -64,12 +64,3 @@ h3 {
     margin: 0;
 }
 
-.profile {
-    width: 60em;
-    height: 15em;
-}
-
-.avatar {
-    height: 13em;
-    margin: 1em;
-}
