@@ -13,7 +13,7 @@ class GameFactory extends Factory
      */
     public function definition(){
 
-        $rand = rand(1, 200);
+        $rand = rand(1, 100);
 
         return [
             'title' => $this->faker->realText(rand(10, 20)),
