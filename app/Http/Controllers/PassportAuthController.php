@@ -4,74 +4,78 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Session;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 
-class PassportAuthController extends Controller
-{
-    public function registerUser(Request $request){
+class PassportAuthController extends Controller{
+    
+    public function reg(){
+    
+        return view('auth.register');
+    }
 
-        $this ->validate( $request, [
+    public function register(Request $request){
+
+        $request->validate([
             'username' => 'required|string|min:3|max:20',
             'steamUsername' => 'required|string|max:20',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:8',
             'avatar' => 'string'
-        ], [
-            'username.required' => 'Username is required',
-            'steamUsername.required' => 'SteamUsername is required',
-            'email.required' => 'Email is required',
-            'password.required' => 'Password is required'
         ]);
 
-        // try {
-            User::create([
-                'username' => $request->username,
-                'steamUsername' => $request->steamUsername,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'avatar' => $request->avatar
-            ]);
-        
-        // } catch (QueryException $error) {
+        $rand = rand(1, 100);
 
-        //     $errorCode = $error->errorInfo[1];
-
-        //     if($errorCode == 1062) {
-        //         return response()->json([
-        //             'error' => "E-mail already registered"
-        //         ]);
-        //     }
-        // }
-
-        // $token = $user -> createToken('LaravelAuthApp') -> accessToken;
-
-        return response()->json([
-            'message' => 'User successfully created!',
-            // 'token' => $token
-        ], 201);
-    }
-
-    public function loginUser(Request $request){
-        $data = [
+        User::create([
+            'username' => $request->username,
+            'steamUsername' => $request->steamUsername,
             'email' => $request->email,
-            'password' => $request->password,
-        ];
+            'password' => bcrypt($request->password),
+            'avatar' => "https://avatars.dicebear.com/api/bottts/'.$rand.'.svg"
+        ]);
+        
+        return redirect()->route('auth.login')->with('success', 'You are registrated');
+    }
+    
+    public function log(){
+        
+        return view('auth.login');
+    }
+    
+    public function login(Request $request){
+        
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string|min:8',
+        ]);
 
-        if (auth()->attempt($data)){
-            $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
-            return response()->json(['token' => $token], 200);
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)){
+
+            $user = $request->user();
+            $tokenResult = $user->createToken('Personal Access Token');
+            $token = $tokenResult->token;
+            $token->save();       
+
+            return redirect()->route('game.index')->with('success', 'Signed in');
             
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
-        }
+            return redirect()->route('auth.login')->with('error', 'Email or password is incorrect');
+        }        
+    }
+    
+    public function logout(){
+        
+        Session::flush();
+        Auth::logout();
+
+        return redirect()->route('game.index')->with('success', 'Successfully logged out');
     }
 
-    public function logout(Request $request){
-
-        $request->user()->token()->revoke();
-
-        return response()->json([
-            'message' => 'Successfully logged out'
-        ]);
+    public function user(Request $request)
+    {
+        return response()->json($request->user());
     }
+
 }

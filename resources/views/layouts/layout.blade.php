@@ -18,12 +18,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li> -->
+        @guest
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ route('auth.log') }}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ route('auth.reg') }}">Register</a>
+        </li>
+        @else
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ route('auth.logout') }}">Logout</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ route('game.create') }}">Add New Game</a>
         </li>
+        @endguest
       </ul>
       <form class="d-flex" action="{{ route('game.index') }}">
         <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
@@ -37,6 +46,12 @@
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif

@@ -53,4 +53,16 @@ class UserController extends Controller{
             $errorCode = $error->errorInfo[1];
         }
     }    
+
+    public function profile($id)
+    {
+
+        // if ($request) {
+        //     $games = Game::where('title', 'like', '%'.$request->search.'%')
+        //     ->get ();
+        //     return view('games.index', compact ('games'));
+        // }
+        $profile = User::find($id);
+        return view('users.profile', compact('profile'));
+    }
 }
