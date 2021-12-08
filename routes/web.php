@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PartyController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PassportAuthController;
 use Laravel\Passport\Passport;
 
@@ -35,3 +36,6 @@ Route::post('auth/login', [PassportAuthController::class, 'login'])->name('auth.
 Route::get('auth/register', [PassportAuthController::class, 'reg'])->name('auth.reg');
 Route::post('auth/register', [PassportAuthController::class, 'register'])->name('auth.register');
 Route::get('logout', [PassportAuthController::class, 'logout'])->name('auth.logout');
+
+Route::get('profile', [UserController::class, 'show'])->name('user.profile');
+Route::get('profile/edit', [UserController::class, 'edit'])->name('user.edit');

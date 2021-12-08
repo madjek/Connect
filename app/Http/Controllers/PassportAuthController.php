@@ -32,7 +32,7 @@ class PassportAuthController extends Controller{
             'steamUsername' => $request->steamUsername,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'avatar' => "https://avatars.dicebear.com/api/bottts/'.$rand.'.svg"
+            'avatar' => "https://avatars.dicebear.com/api/bottts/$rand.svg"
         ]);
         
         return redirect()->route('auth.login')->with('success', 'You are registrated');
@@ -72,10 +72,4 @@ class PassportAuthController extends Controller{
 
         return redirect()->route('game.index')->with('success', 'Successfully logged out');
     }
-
-    public function user(Request $request)
-    {
-        return response()->json($request->user());
-    }
-
 }

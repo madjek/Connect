@@ -14,7 +14,11 @@
   <div class="row">
     @foreach($games as $game)
     <div class="col-3">
+      @guest
+    <a href="{{ route('auth.login') }}">
+      @else
     <a href="{{ route('game.show', ['id'=>$game->id]) }}">
+      @endguest
       <div class="card">
         <div class="card-body">
           <div class="card-img d-flex justify-content-center align-items-end" style="background-image: url({{ $game->poster }})"><h3>{{$game->title }}</h3></div>

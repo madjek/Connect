@@ -15,54 +15,11 @@ class UserController extends Controller{
         } catch(QueryException $error) {
             return $error;
         }
-    }
+    } 
 
-    public function showProfile(Request $request){
-
-        $id = $request->input('id');
-
-        try {
-
-            return User::all()->where('id', '=', $id)
-            ->makeHidden(['password'])->keyBy('id');
-
-        } catch (QueryException $error) {
-            return $error;
-        }
-    }
-    
-    public function updateProfile(Request $request){
-
-        $id = $request->input('id');
-
-        $validatedUpdate = $request->validate([
-            'id' => 'required',
-            'username' => 'required|string|min:3|max:20',
-            'steamUsername' => 'required|string|max:20',
-            'avatar' => 'string'
-        ], [
-            'username.required' => 'Username is required',
-            'steamUsername.required' => 'SteamUsername is required',
-        ]);
-
-        try {
-            return User::where('id', '=', $id)
-                    ->update($validatedUpdate);
-
-        } catch (QueryException $error) {
-            $errorCode = $error->errorInfo[1];
-        }
-    }    
-
-    public function profile($id)
+    public function show(Request $request)
     {
-
-        // if ($request) {
-        //     $games = Game::where('title', 'like', '%'.$request->search.'%')
-        //     ->get ();
-        //     return view('games.index', compact ('games'));
-        // }
-        $profile = User::find($id);
-        return view('users.profile', compact('profile'));
+        $user = $request->user();
+        return view('users.profile', compact('user'));
     }
 }

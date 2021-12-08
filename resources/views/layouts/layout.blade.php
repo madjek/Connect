@@ -27,6 +27,9 @@
         </li>
         @else
         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ route('user.profile') }}">Profile</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ route('auth.logout') }}">Logout</a>
         </li>
         <li class="nav-item">
