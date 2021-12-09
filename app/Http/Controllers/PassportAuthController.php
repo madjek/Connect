@@ -56,7 +56,7 @@ class PassportAuthController extends Controller{
             $token = $tokenResult->token;
             $token->save();       
 
-            return redirect()->route('game.index')->with('success', 'Signed in');
+            return redirect()->route('/')->with('success', 'Signed in');
             
         } else {
             return redirect()->route('auth.login')->with('error', 'Email or password is incorrect');
