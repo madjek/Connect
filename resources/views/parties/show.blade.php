@@ -19,9 +19,9 @@
                             <div class="row rooms">
                                   <div class="message">
                                     <div class="row justify-content-center align-items-center">
-                                      <div class="col-1">{{ $message->user_id }}</div>
+                                      <div class="col-2">{{ $message->users->username }}</div>
                                       <div class="col-2">{{ $message->created_at }}</div>
-                                      <div class="col-9">{{ $message->content }}</div>
+                                      <div class="col-8"><i>{{ $message->content }}</i></div>
                                     </div>
                                   </div>
                             </div>

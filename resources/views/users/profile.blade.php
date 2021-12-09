@@ -16,9 +16,9 @@
             <div class="card-header"><h2>Parties:</h2></div>
                 <div class="card-body row d-flex parties overflow-auto">
                 @foreach($user->messages as $message)
-                <div class="card col-4">
+                <div class="card col-6">
                     <a href="{{ route('party.show', ['id'=>$message->party_id]) }}">
-                        <div><h3>{{ $message->party_id }}</h3></div>
+                        <div><h3>{{ $message->parties->name }}</h3></div>
                     </a>
                 </div>
                 @endforeach
@@ -31,7 +31,7 @@
                 <div class="card-body row d-flex parties overflow-auto">
                 @foreach($user->relations as $friend)
                     <div class="card">
-                        <div><h3>{{$friend->second_user_id }}</h3></div>
+                        <div><h4>{{$friend->users->username }}</h4></div>
                     </div>
                 @endforeach
               </div>
