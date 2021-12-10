@@ -7,7 +7,18 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
-        <div class="card-header text-center"><h5>{{ $game->title }} rooms:</h5></div>
+        <div class="card-header text-center">
+          <div class="card-btn d-flex justify-content-center ">
+            <a href="{{ route('game.edit', ['id'=>$game->id]) }}" class="btn btn-outline-warning">Edit</a>
+            <form action="{{ route('game.destroy', ['id'=>$game->id]) }}" method="post" onsubmit="if (confirm('Are you sure to delete the game')) {return true} else {return false}">
+            @csrf
+            @method('DELETE')
+            <input type="submit" class="btn btn-outline-danger" value="Delete"></a>
+            </form>
+            <h5>{{ $game->title }} rooms:</h5>
+            <a href="{{ route('party.create') }}" class="btn btn-outline-success">New party</a>
+          </div>
+          </div>
         <div class="card-body">
         
             <div class="row">

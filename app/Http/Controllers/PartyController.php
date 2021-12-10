@@ -39,6 +39,7 @@ class PartyController extends Controller
         //     'message' => 'Party successfully created!',
         //     // 'token' => $token
         // ], 201);
+        return view('parties.create');
     }
 
     /**
@@ -85,7 +86,8 @@ class PartyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $party = Party::find($id);
+        return view('parties.edit', compact('party'));
     }
 
     /**
@@ -97,7 +99,13 @@ class PartyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $party = Party::find($id);
+        $party->name = $request->name;
+        $party->icon = $request->icon;
+
+        $party->update();
+        $id = $party->id;
+        return redirect()->route('party.show', [$id])->with('success', 'Party edited successfuly');
     }
 
     /**
@@ -108,6 +116,8 @@ class PartyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $party = Party::find($id);
+        $party->delete();
+        return redirect()->route('game.index')->with('success', 'Party deleted successfuly');
     }
 }

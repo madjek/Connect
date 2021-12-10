@@ -42,7 +42,6 @@ class GameController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-
         $game = new Game();
         $game->title = $request->title;
         $game->poster = $request->poster;
@@ -73,7 +72,8 @@ class GameController extends Controller
      */
     public function edit($id)
     {
-        //
+        $game = Game::find($id);
+        return view('games.edit', compact('game'));
     }
 
     /**
@@ -85,7 +85,14 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $game = Game::find($id);
+        $game->title = $request->title;
+        $game->poster = $request->poster;
+        $game->url = $request->url;    
+
+        $game->update();
+        $id = $game->id;
+        return redirect()->route('game.show', [$id])->with('success', 'Game edited successfuly');
     }
 
     /**
@@ -96,6 +103,8 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $game = Game::find($id);
+        $game->delete();
+        return redirect()->route('game.index')->with('success', 'Game deleted successfuly');
     }
 }

@@ -32,8 +32,11 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ route('auth.logout') }}">Logout</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" class="{{ request()->is('/') ? 'active' : '' }}">
           <a class="nav-link active" aria-current="page" href="{{ route('game.create') }}">Add New Game</a>
+        </li>
+        <li class="nav-item" class="{{ request()->is('/game') ? 'active' : '' }}">
+          <a class="nav-link active" aria-current="page" href="{{ route('game.create') }}">Add New Party</a>
         </li>
         @endguest
       </ul>

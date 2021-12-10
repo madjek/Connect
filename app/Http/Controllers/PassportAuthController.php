@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Session;
+use DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,6 +56,9 @@ class PassportAuthController extends Controller{
             $tokenResult = $user->createToken('Personal Access Token');
             $token = $tokenResult->token;
             $token->save();       
+
+            $id = DB::table('users')->where('email', 'like', $request->email)->get('id');
+            Session::put('id', $id);
 
             return redirect()->route('game.index')->with('success', 'Signed in');
             

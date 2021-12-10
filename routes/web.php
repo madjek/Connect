@@ -22,20 +22,27 @@ use Laravel\Passport\Passport;
 //     return view('welcome');
 // });
 
-// Route:: get(uri:'/', action:'GameController@index');
+Route::get('/', [GameController::class, 'index'])->name('game.index'); //main page
+Route::get('game/create', [GameController::class, 'create'])->name('game.create'); //add new game page
+Route::post('game/', [GameController::class, 'store'])->name('game.store'); //save new game
+Route::get('game/{id}', [GameController::class, 'show'])->name('game.show'); //show game parties
+Route::get('game/edit/{id}', [GameController::class, 'edit'])->name('game.edit'); //edit game page
+Route::patch('game/{id}', [GameController::class, 'update'])->name('game.update'); //update game
+Route::delete('game/{id}', [GameController::class, 'destroy'])->name('game.destroy'); //desrtoy game
 
-// Route::get('/', [GameController::class, 'index']);
-Route::get('/', [GameController::class, 'index'])->name('game.index');
-Route::get('game/create', [GameController::class, 'create'])->name('game.create');
-Route::post('game/', [GameController::class, 'store'])->name('game.store');
-Route::get('game/{id}', [GameController::class, 'show'])->name('game.show');
-Route::get('party/{id}', [PartyController::class, 'show'])->name('party.show');
+Route::get('party/{id}', [PartyController::class, 'show'])->name('party.show'); //show party chat
+Route::get('party/create', [PartyController::class, 'create'])->name('party.create'); //add new party page
+Route::post('party/', [PartyController::class, 'store'])->name('party.store'); //save new party
+Route::get('party/edit/{id}', [PartyController::class, 'edit'])->name('party.edit'); //edit party page
+Route::patch('party/{id}', [PartyController::class, 'update'])->name('party.update'); //update party
+Route::delete('party/{id}', [PartyController::class, 'destroy'])->name('party.destroy'); //desrtoy party
 
-Route::get('auth/login', [PassportAuthController::class, 'log'])->name('auth.log');
-Route::post('auth/login', [PassportAuthController::class, 'login'])->name('auth.login');
-Route::get('auth/register', [PassportAuthController::class, 'reg'])->name('auth.reg');
-Route::post('auth/register', [PassportAuthController::class, 'register'])->name('auth.register');
-Route::get('logout', [PassportAuthController::class, 'logout'])->name('auth.logout');
 
-Route::get('profile', [UserController::class, 'show'])->name('user.profile');
-Route::get('profile/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::get('auth/login', [PassportAuthController::class, 'log'])->name('auth.log'); //login page
+Route::post('auth/login', [PassportAuthController::class, 'login'])->name('auth.login'); //send login data
+Route::get('auth/register', [PassportAuthController::class, 'reg'])->name('auth.reg'); //register page
+Route::post('auth/register', [PassportAuthController::class, 'register'])->name('auth.register'); //send register data 
+Route::get('logout', [PassportAuthController::class, 'logout'])->name('auth.logout'); //logout
+
+Route::get('profile', [UserController::class, 'show'])->name('user.profile'); //profile page
+Route::get('profile/edit', [UserController::class, 'edit'])->name('user.edit'); //edit profile
