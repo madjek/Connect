@@ -11,6 +11,9 @@
     <div class="form-group">
         <input class="form-control" name="icon" type="text" placeholder="Icon link" required>
     </div>
+    <div class="form-group">
+        <input class="form-control d-none" name="game_id" type="number" value="{{ last(request()->segments()) }}" required>
+    </div>
         <input type="submit" value="Add new party" class="btn btn-outline-success">
     </form>
 

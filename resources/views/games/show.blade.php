@@ -16,7 +16,7 @@
             <input type="submit" class="btn btn-outline-danger" value="Delete"></a>
             </form>
             <h5>{{ $game->title }} rooms:</h5>
-            <a href="{{ route('party.create') }}" class="btn btn-outline-success">New party</a>
+            <a href="{{ route('party.create', ['id'=>$game->id]) }}" class="btn btn-outline-success">New party</a>
           </div>
           </div>
         <div class="card-body">

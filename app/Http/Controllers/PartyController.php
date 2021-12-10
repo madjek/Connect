@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Party;
-use App\Models\Message;
 
 class PartyController extends Controller
 {
@@ -23,9 +22,7 @@ class PartyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request){
-
-        return view('party.create');
+    public function create(Request $request, $id){
 
         // $name = $request->input('name');
         // $icon = $request->input('icon');
@@ -57,7 +54,7 @@ class PartyController extends Controller
         
         $party->save();
 
-        // return redirect()->route('game.index')->with('success', 'Game added successfuly');
+        return redirect()->route('game.show', [$request->game_id])->with('success', 'Party added successfuly');
     }
 
     /**
