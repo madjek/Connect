@@ -33,14 +33,20 @@
                                   <form action="{{ route('message.destroy', ['id'=>$message->id]) }}" method="post" onsubmit="if (confirm('Are you sure to delete the message')) {return true} else {return false}">
                                   @csrf
                                   @method('DELETE')
-                                    <input type="submit" class="btn btn-outline-danger del position-absolute top-50 end-0 translate-middle-y" value="X">
+                                  <input type="submit" class="btn btn-outline-danger del position-absolute top-50 end-0 translate-middle-y" value="X">
                                   </form>
-                                @else
-                                <div class="message">
-                                @endif
+                                  @else
+                                  <div class="message">
+                                    @endif
                               @endforeach
-                                <div class="row justify-content-center align-items-center">
-                                  <div class="col-2">{{ $message->users->username }}</div>
+                              <div class="row justify-content-center align-items-center">
+
+                                  <div class="col-2">
+                                    <form action="{{ route('relation.friend', ['id'=>$message->user_id]) }}" method="post" onsubmit="if (confirm('Are you sure to add {{ $message->users->username }} to your friendlist')) {return true} else {return false}">
+                                    @csrf
+                                    <input class="friend-link" type="submit" value="{{ $message->users->username }}">
+                                    </form>
+                                  </div>
                                   <div class="col-2">{{ $message->created_at }}</div>
                                   <div class="col-8 msg"><i>{{ $message->content }}</i></div>
                                 </div>

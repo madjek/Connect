@@ -28,10 +28,15 @@
         <div class="col-3 card">
             <div class="card">
             <div class="card-header"><h2>Friends:</h2></div>
-                <div class="card-body row d-flex parties overflow-auto">
-                @foreach($user->relations as $friend)
-                    <div class="card">
-                        <div><h4>{{$friend->users->username }}</h4></div>
+                <div class="card-body row d-flex parties overflow-auto align-items-start">
+                    @foreach($user->relations as $friend)
+                    <div class="card position-relative msg">
+                        <h4>{{ $friend->users->username }}</h4>
+                        <form action="{{ route('relation.destroy', ['id'=>$friend->second_user_id]) }}" method="post" onsubmit="if (confirm('Are you sure to delete {{$friend->users->username }} from your friendlist?')) {return true} else {return false}">
+                        @csrf
+                        @method('DELETE')
+                            <input type="submit" class="btn btn-outline-danger del position-absolute top-50 end-0 translate-middle-y" value="X">
+                        </form>
                     </div>
                 @endforeach
               </div>

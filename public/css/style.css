@@ -17,6 +17,8 @@ a {
 
 .card {
     user-select: none;
+    min-height: 2em;
+
 }
 .card-body {
     padding: 0em;
@@ -72,4 +74,16 @@ a {
 
 .msg {
     padding-right: 2em;
+}
+
+.friend-link {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    /* color: #0000EE; */
+    padding: 0;
+    /* text-decoration: underline; */
+    font-family: inherit;
+    font-size: inherit;
 }
