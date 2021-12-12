@@ -7,17 +7,17 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
-        <div class="card-header text-center">
-          <div class="card-btn d-flex justify-content-center ">
-            <a href="{{ route('game.edit', ['id'=>$game->id]) }}" class="btn btn-outline-warning">Edit</a>
-            <form action="{{ route('game.destroy', ['id'=>$game->id]) }}" method="post" onsubmit="if (confirm('Are you sure to delete the game')) {return true} else {return false}">
-            @csrf
-            @method('DELETE')
-            <input type="submit" class="btn btn-outline-danger" value="Delete"></a>
-            </form>
-            <h5>{{ $game->title }} rooms:</h5>
-            <a href="{{ route('party.create', ['id'=>$game->id]) }}" class="btn btn-outline-success">New party</a>
-          </div>
+        <div class="card-header text-center d-flex justify-content-center position-relative">
+            <a href="{{ route('party.create', ['id'=>$game->id]) }}" class="btn btn-outline-success position-absolute top-50 start-0 translate-middle-y">New party</a>
+            <h2>{{ $game->title }} parties:</h2>
+            <div class="d-flex position-absolute top-50 end-0 translate-middle-y">
+              <a href="{{ route('game.edit', ['id'=>$game->id]) }}" class="btn btn-outline-warning">Edit</a>
+              <form action="{{ route('game.destroy', ['id'=>$game->id]) }}" method="post" onsubmit="if (confirm('Are you sure to delete the game')) {return true} else {return false}">
+              @csrf
+              @method('DELETE')
+              <input type="submit" class="btn btn-outline-danger" value="Delete"></a>
+              </form>
+            </div>
           </div>
         <div class="card-body">
         

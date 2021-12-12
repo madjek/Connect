@@ -21,6 +21,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'password' => bcrypt('00000000'),
             'avatar' => 'https://avatars.dicebear.com/api/bottts/'.$rand.'.svg',
+            'admin' => false
         ];
     }
 

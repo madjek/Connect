@@ -11,14 +11,16 @@
             <div class="row">
 
                 <div class="col">
-                  <div class="card-header d-flex justify-content-center">
+                  <div class="card-header d-flex justify-content-center position-relative">
+                    <h2>Chat in: {{ $party->name }}</h2>
+                    <div class="d-flex position-absolute top-50 end-0 translate-middle-y">
                       <a href="{{ route('party.edit', ['id'=>$party->id]) }}" class="btn btn-outline-warning">Edit</a>
                       <form action="{{ route('party.destroy', ['id'=>$party->id]) }}" method="post" onsubmit="if (confirm('Are you sure to delete the party')) {return true} else {return false}">
                       @csrf
                       @method('DELETE')
                       <input type="submit" class="btn btn-outline-danger" value="Delete"></a>
                       </form>
-                      <h5>Chat in: {{ $party->name }}</h5>
+                    </div>
                   </div>
                     <div class="container chat row overflow-auto d-flex align-items-end" id='chat'>
 
@@ -31,7 +33,7 @@
                                   <form action="{{ route('message.destroy', ['id'=>$message->id]) }}" method="post" onsubmit="if (confirm('Are you sure to delete the message')) {return true} else {return false}">
                                   @csrf
                                   @method('DELETE')
-                                    <input type="submit" class="btn btn-outline-danger del position-absolute end-0" value="X">
+                                    <input type="submit" class="btn btn-outline-danger del position-absolute top-50 end-0 translate-middle-y" value="X">
                                   </form>
                                 @else
                                 <div class="message">

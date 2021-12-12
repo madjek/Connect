@@ -35,9 +35,6 @@
         <li class="nav-item" class="{{ request()->is('/') ? 'active' : '' }}">
           <a class="nav-link active" aria-current="page" href="{{ route('game.create') }}">Add New Game</a>
         </li>
-        <li class="nav-item" class="{{ request()->is('/game') ? 'active' : '' }}">
-          <a class="nav-link active" aria-current="page" href="{{ route('game.create') }}">Add New Party</a>
-        </li>
         @endguest
       </ul>
       <form class="d-flex" action="{{ route('game.index') }}">

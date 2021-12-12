@@ -15,7 +15,7 @@
             <div class="card">
             <div class="card-header"><h2>Parties:</h2></div>
                 <div class="card-body row d-flex parties overflow-auto">
-                @foreach($user->messages as $message)
+                @foreach($user->messages->unique('party_id') as $message)
                 <div class="card col-6">
                     <a href="{{ route('party.show', ['id'=>$message->party_id]) }}">
                         <div><h3>{{ $message->parties->name }}</h3></div>

@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     
     protected $fillable = [
-        'username', 'steamUsername', 'email', 'password', 'avatar'
+        'username', 'steamUsername', 'email', 'password', 'avatar', 'admin'
     ];
 
     protected $hidden = ['password'];
