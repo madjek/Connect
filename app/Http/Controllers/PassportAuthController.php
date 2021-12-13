@@ -22,7 +22,8 @@ class PassportAuthController extends Controller{
             'username' => 'required|string|min:3|max:20',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:8',
-            'avatar' => 'string'
+            'avatar' => 'string',
+            'admin' => 'boolean'
         ]);
 
         $rand = rand(1, 100);
@@ -31,7 +32,8 @@ class PassportAuthController extends Controller{
             'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'avatar' => "https://avatars.dicebear.com/api/bottts/$rand.svg"
+            'avatar' => "https://avatars.dicebear.com/api/bottts/$rand.svg",
+            'admin' => false
         ]);
         
         return redirect()->route('auth.login')->with('success', 'You are registrated');
