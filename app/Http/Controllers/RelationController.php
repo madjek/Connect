@@ -18,7 +18,7 @@ class RelationController extends Controller
         $relation->second_user_id = $id;
 
         
-        if (Relation::where('first_user_id', '=', $id_u)->exists($id)) {
+        if (Relation::where('first_user_id', '=', $id_u)->where('second_user_id', '=', $id)->exists()) {
             return redirect()->back()->with('error', 'You are friends already');
         }else {
             $relation->save();
